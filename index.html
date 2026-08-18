@@ -1,91 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart Vocabulary Hub</title>
+  <title>Vocabulary Flashcard</title>
   <link rel="stylesheet" href="fx.css">
 </head>
 <body>
-
   <div class="container">
     <header>
-      <h1>✨ Vocab Hub</h1>
-      <p>Master new words effortlessly every day</p>
+      <h1>📚 Vocabulary Builder</h1>
+      <button id="start-study-btn" class="btn-primary">⚡ Start Practice</button>
     </header>
 
-    <!-- START STUDY BUTTON -->
-    <div id="main-controls">
-      <button id="start-study-btn" class="btn-study">✍️ Start Practice</button>
-    </div>
+    <section id="study-section" class="hidden">
+      <div class="study-header">
+        <select id="card-mode" class="select-input">
+          <option value="en-vi">English ➔ Vietnamese</option>
+          <option value="vi-en">Vietnamese ➔ English</option>
+        </select>
+        <button id="close-study-btn" class="btn-close">✕ Exit</button>
+      </div>
 
-    <!-- FLASHCARD PRACTICE SECTION -->
-    <div id="study-section" class="card hidden">
-      <h3>
-        <span>🎴 Flashcard Practice</span>
-        <button id="close-study-btn" class="btn-back">⬅ Go Back</button>
-      </h3>
-      
-      <select id="card-mode">
-        <option value="en-vi" selected>English ➔ Type Vietnamese</option>
-        <option value="vi-en">Vietnamese ➔ Type English</option>
-      </select>
-
-      <div class="flashcard-wrapper">
+      <div class="card-container">
         <div id="flashcard" class="flashcard">
-          <div class="card-inner">
-            <div class="card-front">
-              <span class="card-label" id="front-label">English</span>
-              <div class="card-word" id="card-front-text">No vocabulary available!</div>
-              <div id="hint-container" class="hint-box hidden"></div>
-            </div>
-            <div class="card-back">
-              <span class="card-label" id="back-label">Vietnamese Answer</span>
-              <div class="card-word" id="card-back-text">Answer</div>
-            </div>
+          <div class="card-face card-front">
+            <span id="front-label" class="card-label">English</span>
+            <h2 id="card-front-text">Loading...</h2>
+          </div>
+          <div class="card-face card-back">
+            <span id="back-label" class="card-label">Vietnamese</span>
+            <h2 id="card-back-text">...</h2>
           </div>
         </div>
       </div>
 
-      <!-- ANSWER CHECK & CONTROLS -->
-      <div class="check-box">
-        <input type="text" id="answer-input" placeholder="Type Vietnamese meaning..." autocomplete="off">
-        <div class="check-actions">
-          <button id="check-btn" class="btn-primary">✓ Check Answer</button>
-          <button id="hint-btn" class="btn-soft" style="width: auto; background: #fef3c7; color: #b45309;">💡 Hint</button>
-          <button id="skip-btn" class="btn-soft" style="width: auto;">👁️ Reveal</button>
-        </div>
-        <div id="feedback" class="feedback-msg"></div>
+      <div class="controls">
+        <button id="hint-btn" class="btn-secondary">💡 Hint</button>
+        <button id="cambridge-btn" class="btn-secondary">📖 Cambridge</button>
+        <button id="skip-btn" class="btn-secondary">👁️ Flip</button>
+        <button id="next-card-btn" class="btn-primary">Next ➔</button>
       </div>
 
-      <button id="next-card-btn" class="btn-soft" style="margin-top: 10px;">Next Card ➔</button>
-    </div>
+      <div id="hint-container" class="hint-box hidden"></div>
 
-    <!-- ADD NEW WORD SECTION -->
-    <div id="add-section" class="card">
-      <h3>✍️ Add New Word</h3>
+      <div class="input-group">
+        <input type="text" id="answer-input" placeholder="Type your answer here..." autocomplete="off">
+        <button id="check-btn" class="btn-primary">Check</button>
+      </div>
+
+      <div id="feedback" class="feedback-msg"></div>
+    </section>
+
+    <section id="add-section">
+      <h2>Add New Vocabulary</h2>
       <form id="vocab-form">
-        <input type="text" id="word" placeholder="English Word (e.g. Apple)" required>
-        <input type="text" id="meaning" placeholder="Vietnamese Meaning (e.g. Quả táo)" required>
-        <button type="submit" class="btn-success">➕ Save Word</button>
+        <div class="form-group">
+          <input type="text" id="word" placeholder="English Word (e.g. apple)" required>
+          <input type="text" id="meaning" placeholder="Vietnamese Meaning (e.g. quả táo, trái táo)" required>
+        </div>
+        <button type="submit" class="btn-primary">+ Add Word</button>
       </form>
-    </div>
+    </section>
 
-    <!-- VOCABULARY LIST SECTION -->
-    <div id="list-section" class="card">
-      <h3>📚 Vocabulary List <span class="badge" id="vocab-count">0</span></h3>
-      <ul id="vocab-list"></ul>
-      
-      <hr style="margin: 20px 0; border: 0; border-top: 1px dashed #e5e7eb;">
-      
-      <p style="font-size: 0.8rem; color: var(--text-sub); margin-bottom: 8px;">Backup & Restore (Data local safety):</p>
-      <div class="backup-tools">
-        <button id="export-btn" class="btn-soft">💾 Export Data</button>
-        <button id="import-btn" class="btn-soft">📂 Import Data</button>
-        <input type="file" id="file-input" accept=".json" style="display: none;">
+    <section id="list-section">
+      <div class="list-header">
+        <h2>My Vocabulary (<span id="vocab-count">0</span>)</h2>
+        <div class="backup-btns">
+          <button id="export-btn" class="btn-small">📥 Export</button>
+          <button id="import-btn" class="btn-small">📤 Import</button>
+          <input type="file" id="file-input" accept=".json" class="hidden">
+        </div>
       </div>
-    </div>
+      <ul id="vocab-list" class="vocab-list"></ul>
+    </section>
   </div>
+
+  <button id="toggle-dict-btn" title="Mở từ điển">📚</button>
 
   <script src="xl.js"></script>
 </body>
