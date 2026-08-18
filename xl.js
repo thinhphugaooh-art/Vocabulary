@@ -285,3 +285,11 @@ fileInput.addEventListener('change', (e) => {
   };
   reader.readAsText(file);
 });
+const toggleDictBtn = document.getElementById('toggle-dict-btn');
+const mainContainer = document.querySelector('.container');
+
+if (toggleDictBtn && mainContainer) {
+  toggleDictBtn.addEventListener('click', () => {
+    mainContainer.classList.toggle('active');
+  });
+}
