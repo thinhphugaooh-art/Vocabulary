@@ -7,9 +7,8 @@
   <link rel="stylesheet" href="fx.css">
 </head>
 <body>
-  <div class="container" id="dict-sidebar">
-    <button class="close-sidebar-btn" id="close-sidebar-btn">✕</button>
-    
+
+  <div class="container">
     <header>
       <h1>📚 Vocabulary</h1>
       <button id="start-study-btn" class="btn-primary">⚡ Practice</button>
@@ -59,7 +58,7 @@
       <form id="vocab-form">
         <div class="form-group">
           <input type="text" id="word" placeholder="English Word (e.g. apple)" required>
-          <input type="text" id="meaning" placeholder="Vietnamese Meaning (e.g. quả táo, trái táo)" required>
+          <input type="text" id="meaning" placeholder="Vietnamese Meaning (e.g. quả táo)" required>
         </div>
         <button type="submit" class="btn-primary">+ Add Word</button>
       </form>
@@ -69,8 +68,8 @@
       <div class="list-header">
         <h2>My Vocabulary (<span id="vocab-count">0</span>)</h2>
         <div class="backup-btns">
-          <button id="export-btn" class="btn-small">📥 Export</button>
-          <button id="import-btn" class="btn-small">📤 Import</button>
+          <button id="export-btn" class="btn-small" title="Lưu danh sách từ vựng về máy tính">💾 Lưu vào máy</button>
+          <button id="import-btn" class="btn-small" title="Mở file từ vựng từ máy tính">📂 Nạp từ máy</button>
           <input type="file" id="file-input" accept=".json" class="hidden">
         </div>
       </div>
@@ -78,7 +77,21 @@
     </section>
   </div>
 
-  <button id="toggle-dict-btn" title="Mở từ điển">📚</button>
+  <!-- POPUP CỬA SỔ TỪ ĐIỂN CAMBRIDGE -->
+  <div id="cambridge-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span>📖 Cambridge Dictionary</span>
+        <div class="modal-actions">
+          <button id="open-tab-btn" class="btn-small">↗️ Tab mới</button>
+          <button id="close-modal-btn" class="close-modal-btn">✕</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <iframe id="cambridge-frame" src="about:blank" title="Cambridge Dictionary"></iframe>
+      </div>
+    </div>
+  </div>
 
   <script src="xl.js"></script>
 </body>
