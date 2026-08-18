@@ -7,10 +7,12 @@
   <link rel="stylesheet" href="fx.css">
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="dict-sidebar">
+    <button class="close-sidebar-btn" id="close-sidebar-btn">✕</button>
+    
     <header>
-      <h1>📚 Vocabulary Builder</h1>
-      <button id="start-study-btn" class="btn-primary">⚡ Start Practice</button>
+      <h1>📚 Vocabulary</h1>
+      <button id="start-study-btn" class="btn-primary">⚡ Practice</button>
     </header>
 
     <section id="study-section" class="hidden">
@@ -45,7 +47,7 @@
       <div id="hint-container" class="hint-box hidden"></div>
 
       <div class="input-group">
-        <input type="text" id="answer-input" placeholder="Type your answer here..." autocomplete="off">
+        <input type="text" id="answer-input" placeholder="Type answer..." autocomplete="off">
         <button id="check-btn" class="btn-primary">Check</button>
       </div>
 
