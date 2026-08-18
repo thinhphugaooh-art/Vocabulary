@@ -1,1 +1,98 @@
-a
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vocabulary Flashcard</title>
+  <link rel="stylesheet" href="fx.css">
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>📚 Vocabulary</h1>
+      <button id="start-study-btn" class="btn-primary">⚡ Practice</button>
+    </header>
+
+    <section id="study-section" class="hidden">
+      <div class="study-header">
+        <select id="card-mode" class="select-input">
+          <option value="en-vi">English ➔ Vietnamese</option>
+          <option value="vi-en">Vietnamese ➔ English</option>
+        </select>
+        <button id="close-study-btn" class="btn-close">✕ Exit</button>
+      </div>
+
+      <div class="card-container">
+        <div id="flashcard" class="flashcard">
+          <div class="card-face card-front">
+            <span id="front-label" class="card-label">English</span>
+            <h2 id="card-front-text">Loading...</h2>
+          </div>
+          <div class="card-face card-back">
+            <span id="back-label" class="card-label">Vietnamese</span>
+            <h2 id="card-back-text">...</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="hint-btn" class="btn-secondary">💡 Hint</button>
+        <button id="cambridge-btn" class="btn-secondary">📖 Cambridge</button>
+        <button id="skip-btn" class="btn-secondary">👁️ Flip</button>
+        <button id="next-card-btn" class="btn-primary">Next ➔</button>
+      </div>
+
+      <div id="hint-container" class="hint-box hidden"></div>
+
+      <div class="input-group">
+        <input type="text" id="answer-input" placeholder="Type answer..." autocomplete="off">
+        <button id="check-btn" class="btn-primary">Check</button>
+      </div>
+
+      <div id="feedback" class="feedback-msg"></div>
+    </section>
+
+    <section id="add-section">
+      <h2>Add New Vocabulary</h2>
+      <form id="vocab-form">
+        <div class="form-group">
+          <input type="text" id="word" placeholder="English Word (e.g. apple)" required>
+          <input type="text" id="meaning" placeholder="Vietnamese Meaning (e.g. quả táo)" required>
+        </div>
+        <button type="submit" class="btn-primary">+ Add Word</button>
+      </form>
+    </section>
+
+    <section id="list-section">
+      <div class="list-header">
+        <h2>My Vocabulary (<span id="vocab-count">0</span>)</h2>
+        <div class="backup-btns">
+          <button id="export-btn" class="btn-small" title="Lưu danh sách từ vựng về máy tính">💾 Lưu vào máy</button>
+          <button id="import-btn" class="btn-small" title="Mở file từ vựng từ máy tính">📂 Nạp từ máy</button>
+          <input type="file" id="file-input" accept=".json" class="hidden">
+        </div>
+      </div>
+      <ul id="vocab-list" class="vocab-list"></ul>
+    </section>
+  </div>
+
+  <!-- POPUP CỬA SỔ TỪ ĐIỂN CAMBRIDGE -->
+  <div id="cambridge-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span>📖 Cambridge Dictionary</span>
+        <div class="modal-actions">
+          <button id="open-tab-btn" class="btn-small">↗️ Tab mới</button>
+          <button id="close-modal-btn" class="close-modal-btn">✕</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <iframe id="cambridge-frame" src="about:blank" title="Cambridge Dictionary"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script src="xl.js"></script>
+</body>
+</html>
