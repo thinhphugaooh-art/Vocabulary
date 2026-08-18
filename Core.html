@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Vocabulary Hub</title>
+  <link rel="stylesheet" href="fx.css">
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>✨ Vocab Hub</h1>
+      <p>Master new words effortlessly every day</p>
+    </header>
+
+    <!-- START STUDY BUTTON -->
+    <div id="main-controls">
+      <button id="start-study-btn" class="btn-study">✍️ Start Practice</button>
+    </div>
+
+    <!-- FLASHCARD PRACTICE SECTION -->
+    <div id="study-section" class="card hidden">
+      <h3>
+        <span>🎴 Flashcard Practice</span>
+        <button id="close-study-btn" class="btn-back">⬅ Go Back</button>
+      </h3>
+      
+      <select id="card-mode">
+        <option value="en-vi" selected>English ➔ Type Vietnamese</option>
+        <option value="vi-en">Vietnamese ➔ Type English</option>
+      </select>
+
+      <div class="flashcard-wrapper">
+        <div id="flashcard" class="flashcard">
+          <div class="card-inner">
+            <div class="card-front">
+              <span class="card-label" id="front-label">English</span>
+              <div class="card-word" id="card-front-text">No vocabulary available!</div>
+              <div id="hint-container" class="hint-box hidden"></div>
+            </div>
+            <div class="card-back">
+              <span class="card-label" id="back-label">Vietnamese Answer</span>
+              <div class="card-word" id="card-back-text">Answer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ANSWER CHECK & CONTROLS -->
+      <div class="check-box">
+        <input type="text" id="answer-input" placeholder="Type Vietnamese meaning..." autocomplete="off">
+        <div class="check-actions">
+          <button id="check-btn" class="btn-primary">✓ Check Answer</button>
+          <button id="hint-btn" class="btn-soft" style="width: auto; background: #fef3c7; color: #b45309;">💡 Hint</button>
+          <button id="skip-btn" class="btn-soft" style="width: auto;">👁️ Reveal</button>
+        </div>
+        <div id="feedback" class="feedback-msg"></div>
+      </div>
+
+      <button id="next-card-btn" class="btn-soft" style="margin-top: 10px;">Next Card ➔</button>
+    </div>
+
+    <!-- ADD NEW WORD SECTION -->
+    <div id="add-section" class="card">
+      <h3>✍️ Add New Word</h3>
+      <form id="vocab-form">
+        <input type="text" id="word" placeholder="English Word (e.g. Apple)" required>
+        <input type="text" id="meaning" placeholder="Vietnamese Meaning (e.g. Quả táo)" required>
+        <button type="submit" class="btn-success">➕ Save Word</button>
+      </form>
+    </div>
+
+    <!-- VOCABULARY LIST SECTION -->
+    <div id="list-section" class="card">
+      <h3>📚 Vocabulary List <span class="badge" id="vocab-count">0</span></h3>
+      <ul id="vocab-list"></ul>
+      
+      <hr style="margin: 20px 0; border: 0; border-top: 1px dashed #e5e7eb;">
+      
+      <p style="font-size: 0.8rem; color: var(--text-sub); margin-bottom: 8px;">Backup & Restore (Data local safety):</p>
+      <div class="backup-tools">
+        <button id="export-btn" class="btn-soft">💾 Export Data</button>
+        <button id="import-btn" class="btn-soft">📂 Import Data</button>
+        <input type="file" id="file-input" accept=".json" style="display: none;">
+      </div>
+    </div>
+  </div>
+
+  <script src="xl.js"></script>
+</body>
+</html>
