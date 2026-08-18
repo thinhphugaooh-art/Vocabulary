@@ -142,14 +142,21 @@ function checkAnswer() {
   const currentItem = vocabList[currentVocabIndex];
   const mode = cardModeSelect.value;
   
-  const targetAns = (mode === 'en-vi' ? currentItem.meaning : currentItem.word).trim().toLowerCase();
+  // Lấy chuỗi đáp án chuẩn dựa theo chế độ học
+  const rawTarget = (mode === 'en-vi' ? currentItem.meaning : currentItem.word).trim().toLowerCase();
 
   if (!userAns) {
     showFeedback('wrong', '⚠️ Please enter your answer before checking!');
     return;
   }
 
-  if (userAns === targetAns) {
+  // Tách đáp án thành danh sách các nghĩa bằng dấu phẩy (,) hoặc dấu chấm phẩy (;)
+  const validAnswers = rawTarget.split(/[,;]/).map(ans => ans.trim()).filter(ans => ans.length > 0);
+
+  // Kiểm tra xem câu trả lời người dùng có khớp với BẤT KỲ nghĩa nào trong danh sách không
+  const isCorrect = validAnswers.some(target => userAns === target);
+
+  if (isCorrect) {
     showFeedback('correct', '🎉 Correct! Loading next word...');
     flashcard.classList.add('flipped');
     
