@@ -32,8 +32,18 @@ const answerInput = document.getElementById('answer-input');
 const checkBtn = document.getElementById('check-btn');
 const skipBtn = document.getElementById('skip-btn');
 const hintBtn = document.getElementById('hint-btn');
+const cambridgeBtn = document.getElementById('cambridge-btn');
 const hintContainer = document.getElementById('hint-container');
 const feedback = document.getElementById('feedback');
+
+const toggleDictBtn = document.getElementById('toggle-dict-btn');
+const mainContainer = document.querySelector('.container');
+
+if (toggleDictBtn && mainContainer) {
+  toggleDictBtn.addEventListener('click', () => {
+    mainContainer.classList.toggle('active');
+  });
+}
 
 renderVocabs();
 
@@ -91,6 +101,19 @@ cardModeSelect.addEventListener('change', () => {
 });
 
 hintBtn.addEventListener('click', generateHint);
+
+cambridgeBtn.addEventListener('click', () => {
+  if (currentVocabIndex === -1 || vocabList.length === 0) return;
+  const currentItem = vocabList[currentVocabIndex];
+  
+  const rawEnglish = currentItem.word.trim();
+  const firstWord = rawEnglish.split(/[,;]/)[0].trim().toLowerCase();
+  
+  if (firstWord) {
+    const url = `https://dictionary.cambridge.org/dictionary/english/${encodeURIComponent(firstWord)}`;
+    window.open(url, '_blank');
+  }
+});
 
 function generateHint() {
   if (currentVocabIndex === -1 || vocabList.length === 0) return;
@@ -285,11 +308,3 @@ fileInput.addEventListener('change', (e) => {
   };
   reader.readAsText(file);
 });
-const toggleDictBtn = document.getElementById('toggle-dict-btn');
-const mainContainer = document.querySelector('.container');
-
-if (toggleDictBtn && mainContainer) {
-  toggleDictBtn.addEventListener('click', () => {
-    mainContainer.classList.toggle('active');
-  });
-}
